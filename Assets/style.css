@@ -5,3 +5,8 @@
     border-style: double;
     border-width: 3px;
 }
+
+.quiz-box {
+    background-color: #f8a186;
+    opacity: .8;
+}
