@@ -21,32 +21,32 @@ var questions = [
     {
         question: "Media queries define how css styles are applied in relation to the characteristics of the _________",
         answers: {
-            a:"",
-            b:"",
-            c:"",
-            d:"",
+            a:"window",
+            b:"console",
+            c:"device viewport",
+            d:"server",
         },
         correctAnswer: "c"
     },
     {
-        question: "In CSS, when must media queries be displayed? ",
+        question: "In CSS, when/where must media queries be displayed? ",
         answers: {
-            a:"",
-            b:"",
-            c:"",
-            d:"",
+            a:"first",
+            b:"anywhere",
+            c:"in a seperate file",
+            d:"last",
         },
         correctAnswer: "d"
     },
 	{
         question: "Who invented Javascript?",
         answers: {
-            a:"",
-            b:"",
-            c:"",
-            d:"",
+            a:"Elon Musk",
+            b:"Brendan Eich",
+            c:"Bill Gates",
+            d:"Steve Jobs",
         },
-        correctAnswer: "d"
+        correctAnswer: "b"
     }
 ];
 
@@ -82,7 +82,24 @@ startButton.addEventListener("click", function (event) {
 });
 
 
-function buildQuiz(){}
+
+//setting up functions to get the quiz going
+function buildQuiz(){
+    //variable to store the user selection
+    var output = [];
+
+    //apply .forEach to the array of questions
+    //arguments passed will be the questions and the index of that question 
+    questions.forEach(
+        (currentQuestion, questionNumber) {
+            //variable to store list of possible answers 
+            var answers= [];  
+        }
+    )
+
+}
+
+
 
 function showResults(){}
 
