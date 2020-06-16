@@ -9,12 +9,12 @@ var submitButton = document.getElementById("submit");
 //set up variables to display all the Q/As, using object properties 
 var questions = [
     {
-        question: "Which of the following is" <em> "not" </em> "a semantic element?",
+        question: "Which of the following is not a semantic element?",
         answers: {
-            a: "<section>",
-            b: "<article>",
-            c: "<p>",
-            d: "<heder>",
+            a: "section",
+            b: "article",
+            c: "div",
+            d: "heder",
         },
         correctAnswer: "c"
     },
