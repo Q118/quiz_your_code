@@ -38,3 +38,5 @@ once high score is submitted then go to the seperate html page and it gets displ
 
 
 add bootstrap style to the buttons and choices
+
+
