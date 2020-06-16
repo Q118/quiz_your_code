@@ -4,15 +4,6 @@
 var quizContainer = document.getElementById("quiz");
 var resultsContainer = document.getElementById("results");
 var submitButton = document.getElementById("submit");
-var nextButton = document.getElementById("next");
-var backButton = document.getElementById("previous");
-
-//set quiz buttons to be hidden when page loads
-window.addEventListener("load", (event) => {
-	submitButton.style.visibility = "hidden";
-	nextButton.style.visibility = "hidden";
-	backButton.style.visibility = "hidden";
-});
 
 //set up variables to display all the Q/As, using object properties
 var questions = [
@@ -81,30 +72,28 @@ function countDown() {
 //event listener for click of start button and countdown functin gets called
 startButton.addEventListener("click", function (event) {
 	if (event.target.matches("button")) {
-        buildQuiz();
-        countDown();
-		//trigger quiz to display and the buttons, one question at a time
-		
-		
-		startButton.style.visibility = "hidden";
-		submitButton.style.visibility = "visible";
-		nextButton.style.visibility = "visible";
-        backButton.style.visibility = "visible";
-        
+		countDown();
+		//trigger quiz to display
+		buildQuiz();
 		// Pagination
-		var backButton = document.getElementById("previous");
+		var previousButton = document.getElementById("previous");
 		var nextButton = document.getElementById("next");
 		var slides = document.querySelectorAll(".slide");
         let currentSlide = 0;
-        //call to show first slide(question)
-        
         showSlide(currentSlide);
-        
+
 	}
 });
 
 //setting up functions to get the quiz going
 function buildQuiz() {
+	output.push(
+		`<div class="slide">
+          <div class="question"> ${currentQuestion.question} </div>
+          <div class="answers"> ${answers.join("")} </div>
+        </div>`
+	);
+	showSlide(currentSlide);
 	//variable to store the user selection
 	var output = [];
 
@@ -127,94 +116,36 @@ function buildQuiz() {
 		//add the current question and its answers to the output
 		//use join to take the list of answers and put them together in one string that
 		//gets outputted into the answers div
-		//adding the slide class to hold the question and answers containers
 		output.push(
-			`<div class="slide">
-                <div class="question"> ${currentQuestion.question} </div>
-                <div class="answers"> ${answers.join("")} </div>
-            </div>`
+			`<div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join(" ")} </div>`
 		);
 	});
 	//joining together the HTML generated above to show it to the page
 	quizContainer.innerHTML = output.join(" ");
 }
 
-//build showResults function to loop over the answers, check them, and show if right or wrong
-function showResults() {
-	//get answers containers from quiz
-	var answerContainers = quizContainer.querySelectorAll(".answers");
-
-	//keep track of user's answers for each question
-	let numCorrect = 0;
-
-	questions.forEach((currentQuestion, questionNumber) => {
-		//find the answer the user selected
-		var answerContainer = answerContainers[questionNumber];
-		var selector = `input[name=question${questionNumber}]:checked`;
-		var userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-		//if right answer
-		if (userAnswer === currentQuestion.correctAnswer) {
-			//alert("correct!");
-			numCorrect++;
-			//set attribute to green colored class
-			answerContainers[questionNumber].style.color = "green";
-		}
-		//wrong answer
-		else {
-			//alert("Wrong, nice try!");
-			answerContainers[questionNumber].style.color = "red";
-		}
-	});
-
-	// show number of correct answers out of total
-	resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
-}
-
-
-//function to display slides/questions one at a time
 function showSlide(n) {
-    //hide current slide by rremoving the active-slide class and show new one by adding that class
-    slides[currentSlide].classList.remove("active-slide");
-    slides[n].classList.add("active-slide");
-    //update current slide number
+    slides[currentSlide].classList.remove('active-slide');
+    slides[n].classList.add('active-slide');
     currentSlide = n;
-    //if on first slide, then hide the previous one, otherwse show the button
     if(currentSlide === 0){
-      backButton.style.display = "none";
+      previousButton.style.display = 'none';
     }
     else{
-      backButton.style.display = "inline-block";
+      previousButton.style.display = 'inline-block';
     }
-    //if on last slide, hide next button and show submit button, otherwise show both of them
     if(currentSlide === slides.length-1){
-      nextButton.style.display = "none";
-      submitButton.style.display = "inline-block";
+      nextButton.style.display = 'none';
+      submitButton.style.display = 'inline-block';
     }
     else{
-      nextButton.style.display = "inline-block";
-      submitButton.style.display = "none";
+      nextButton.style.display = 'inline-block';
+      submitButton.style.display = 'none';
     }
   }
 
-//functions to make the navigation buttons work
-//let the buttons show last and next slide/question
-function showNextSlide() {
-    showSlide(currentSlide + 1);
-  }
-  
-  function showPreviousSlide() {
-    showSlide(currentSlide - 1);
-  }
-
-
-
-
-  
+function showResults() {}
 
 //show results on submit button
 submitButton.addEventListener("click", showResults);
-
-//event listeners for next and previous buttons
-backButton.addEventListener("click", showPreviousSlide);
-nextButton.addEventListener("click", showNextSlide);
