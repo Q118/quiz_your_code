@@ -91,11 +91,29 @@ function buildQuiz(){
     //apply .forEach to the array of questions
     //arguments passed will be the questions and the index of that question 
     questions.forEach(
-        (currentQuestion, questionNumber) {
-            //variable to store list of possible answers 
+        (currentQuestion, questionNumber) => {
+            //variable to store list of possible answers and variable for each possible answer
             var answers= [];  
+            for(letter in currentQuestion.answers) {
+                //adding html radio button
+                answers.push(
+                    `<label>
+                      <input type="radio" name="question${questionNumber}" value="${letter}">
+                      ${letter} :
+                      ${currentQuestion.answers[letter]}
+                    </label>
+                );
+            }
+            
+            output.push(
+                `<div class="question"> ${currentQuestion.question} </div>
+        <div class="answers"> ${answers.join('')} </div>`
+      );
+            
         }
-    )
+    );
+
+
 
 }
 
