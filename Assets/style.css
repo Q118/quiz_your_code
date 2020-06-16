@@ -1,12 +1,17 @@
+/** @format */
+
 .top {
-    background-color: #84dbff;
-    opacity: .7;
-    border-color: black;
-    border-style: double;
-    border-width: 3px;
+	background-color: #84dbff;
+	opacity: 0.7;
+	border-color: black;
+	border-style: double;
+	border-width: 3px;
 }
 
 .quiz-box {
-    background-color: #f8a186;
-    opacity: .8;
+	background-color: #f8a186;
+	opacity: 0.8;
+	border-color: black;
+	border-style: double;
+	border-width: 3px;
 }

@@ -6,23 +6,24 @@ yellowish: #f8dd9d
 
 switch main div background color blue for correct and orange for wrong and that makes the top color switch too
 
-AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-
-
-## Acceptance Criteria
+need an array of elements that get displayed depending on where in quiz you are
 
 ```
 GIVEN I am taking a code quiz...
 
 on first load.. click the start button and that gets the timer to start counting down and moves on to display qquestion one so an array of all the questions is needed
-
-
+//put ids in place in the indesx html to use to add elements into
+0
+TIMER
+timer container in top right corner
+listen for the event click on the start button to display timer
+final scored becomes the value left in the timer
 
 click a choice from the questions.
 then it will say right or wrong, taking time down if its wrong, then move to the next question
 THEN I am presented with another question
+
+apply data set within thew answers to hoose when to display each element
 
 WHEN all questions are answered or the timer reaches 0
 the game is ober and it saysd all done, enter your score and initials
@@ -32,3 +33,8 @@ WHEN I save my initials and score
 THEN I can view my previous scores
 then can start over or clear the scores
 ```
+
+once high score is submitted then go to the seperate html page and it gets displaued, the number and the initials
+
+
+add bootstrap style to the buttons and choices
