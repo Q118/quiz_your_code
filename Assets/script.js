@@ -82,12 +82,18 @@ function countDown() {
 startButton.addEventListener("click", function (event) {
 	if (event.target.matches("button")) {
 		countDown();
-		//trigger quiz to display and the buttons
+		//trigger quiz to display and the buttons, one question at a time
+		showSlide(currentSlide);
 		buildQuiz();
 		startButton.style.visibility = "hidden";
 		submitButton.style.visibility = "visible";
 		nextButton.style.visibility = "visible";
 		backButton.style.visibility = "visible";
+		// Pagination
+		var previousButton = document.getElementById("previous");
+		var nextButton = document.getElementById("next");
+		var slides = document.querySelectorAll(".slide");
+		let currentSlide = 0;
 	}
 });
 
@@ -114,8 +120,8 @@ function buildQuiz() {
 		}
 		//add the current question and its answers to the output
 		//use join to take the list of answers and put them together in one string that
-        //gets outputted into the answers div
-        //adding the slide class to hold the question and answers containers
+		//gets outputted into the answers div
+		//adding the slide class to hold the question and answers containers
 		output.push(
 			`<div class="slide">
                 <div class="question"> ${currentQuestion.question} </div>
@@ -158,6 +164,9 @@ function showResults() {
 	// show number of correct answers out of total
 	resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
+
+//show the first question
+showSlide(currentSlide);
 
 //show results on submit button
 submitButton.addEventListener("click", showResults);
