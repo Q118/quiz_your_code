@@ -11,7 +11,7 @@ var questions = [
 
 //set up timer
 var timeEl = document.querySelector("#time");
-var startButton = document.querySelector(".start-button");
+var startButton = document.querySelector("#start-button");
 //variable to track remaining time
 var secondsLeft = 75;
 
@@ -28,5 +28,13 @@ function countDown() {
 		//}
 	}, 1000);
 } 
-countDown();
+
+
+startButton.addEventListener("click", function(event) {
+    if(event.target.matches("button")) {
+        countDown();
+    }
+ 
+})
+
 //event listener for click of start button and countdown functin gets called
