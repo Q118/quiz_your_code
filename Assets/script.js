@@ -90,6 +90,7 @@ function buildQuiz(){
 
     //apply .forEach to the array of questions
     //arguments passed will be the questions and the index of that question 
+    //code for each question gets looped through
     questions.forEach(
         (currentQuestion, questionNumber) => {
             //variable to store list of possible answers and variable for each possible answer
@@ -101,21 +102,24 @@ function buildQuiz(){
                       <input type="radio" name="question${questionNumber}" value="${letter}">
                       ${letter} :
                       ${currentQuestion.answers[letter]}
-                    </label>
+                    </label>`
                 );
             }
-            
+            //add the current question and its answers to the output
+            //use join to take the list of answers and put them together in one string that 
+            //gets outputted into the answers div
             output.push(
                 `<div class="question"> ${currentQuestion.question} </div>
-        <div class="answers"> ${answers.join('')} </div>`
+        <div class="answers"> ${answers.join(" ")} </div>`
       );
             
         }
     );
-
-
+        //joining together the HTML generated above to show it to the page
+        quizContainer.innerHTML = output.join(" ");
 
 }
+
 
 
 

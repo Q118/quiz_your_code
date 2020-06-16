@@ -29,6 +29,10 @@ WHEN all questions are answered or the timer reaches 0
 the game is ober and it saysd all done, enter your score and initials
 
 
+For each question, we’ll want to generate the correct HTML, so next  create an array to hold the list of possible answers.
+
+use a loop to fill in the possible answers for the current question. For each choice, we’re creating an HTML radio button, which we enclose in a <label> element. This is so that users will be able to click anywhere on the answer text to select that answer. If the label was omitted, then users would have to click on the radio button itself, which is not very accessible.
+
 WHEN I save my initials and score
 THEN I can view my previous scores
 then can start over or clear the scores
