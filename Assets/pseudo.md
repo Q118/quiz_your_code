@@ -43,4 +43,11 @@ once high score is submitted then go to the seperate html page and it gets displ
 
 add bootstrap style to the buttons and choices
 
+perhaps use data-index for answers one at a time
 
+score becomes however much time is left
+
+use style.hidden when moving to next portion
+
+now one queswtion at a time.. 
+need: way to show and hid questioons and buttons to navigate the quiz
