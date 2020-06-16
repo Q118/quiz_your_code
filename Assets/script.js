@@ -1,10 +1,23 @@
 /** @format */
 
 
+
+
+
 // set up variables tpo get timer going
 var quizContainer = document.getElementById("quiz");
 var resultsContainer = document.getElementById("results");
 var submitButton = document.getElementById("submit");
+var nextButton = document.getElementById("next");
+var backButton = document.getElementById("previous");
+
+//set quiz buttons to be hidden when page loads
+window.addEventListener("load", (event) => {
+    submitButton.style.visibility = "hidden";
+    nextButton.style.visibility = "hidden";
+    backButton.style.visibility = "hidden";
+});
+
 
 //set up variables to display all the Q/As, using object properties 
 var questions = [
@@ -76,9 +89,12 @@ function countDown() {
 startButton.addEventListener("click", function (event) {
 	if (event.target.matches("button")) {
         countDown();
-        //trigger quiz to display
+        //trigger quiz to display and the buttons
         buildQuiz();
         startButton.style.visibility = "hidden";
+        submitButton.style.visibility = "visible";
+        nextButton.style.visibility = "visible";
+        backButton.style.visibility = "visible";
 	}
 });
 
@@ -139,14 +155,14 @@ function showResults(){
 
         //if right answer
         if(userAnswer === currentQuestion.correctAnswer) {
-            alert("correct!");
+            //alert("correct!");
             numCorrect++;
             //set attribute to green colored class
             answerContainers[questionNumber].style.color= "green";
         }
         //wrong answer
         else {
-            alert("Wrong, nice try!");
+            //alert("Wrong, nice try!");
             answerContainers[questionNumber].style.color= "red";
         }
     
