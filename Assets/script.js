@@ -78,6 +78,7 @@ startButton.addEventListener("click", function (event) {
         countDown();
         //trigger quiz to display
         buildQuiz();
+        startButton.style.visibility = "hidden";
 	}
 });
 
@@ -122,8 +123,44 @@ function buildQuiz(){
 
 
 
+//build showResults function to loop over the answers, check them, and show if right or wrong
+function showResults(){
+    //get answers containers from quiz
+    var answerContainers = quizContainer.querySelectorAll(".answers");
 
-function showResults(){}
+    //keep track of user's answers for each question
+    let numCorrect = 0;
+
+    questions.forEach( (currentQuestion, questionNumber) => {
+        //find the answer the user selected
+        var answerContainer = answerContainers[questionNumber];
+        var selector = `input[name=question${questionNumber}]:checked`;
+        var userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+        //if right answer
+        if(userAnswer === currentQuestion.correctAnswer) {
+            alert("correct!");
+            numCorrect++;
+            //set attribute to green colored class
+            answerContainers[questionNumber].style.color= "green";
+        }
+        //wrong answer
+        else {
+            alert("Wrong, nice try!");
+            answerContainers[questionNumber].style.color= "red";
+        }
+    
+
+    }   );
+
+    // show number of correct answers out of total
+  resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+
+}
+
+
+
+
 
 //show results on submit button
 submitButton.addEventListener("click", showResults);
