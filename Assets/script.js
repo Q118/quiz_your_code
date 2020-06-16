@@ -93,7 +93,9 @@ startButton.addEventListener("click", function (event) {
 		var previousButton = document.getElementById("previous");
 		var nextButton = document.getElementById("next");
 		var slides = document.querySelectorAll(".slide");
-		let currentSlide = 0;
+        let currentSlide = 0;
+        //call to show first slide(question)
+        showSlide(currentSlide);
 	}
 });
 
@@ -180,6 +182,7 @@ function showSlide(n) {
     else{
       previousButton.style.display = "inline-block";
     }
+    //if on last slide, hide next button and show submit button, otherwise show both of them
     if(currentSlide === slides.length-1){
       nextButton.style.display = "none";
       submitButton.style.display = "inline-block";
@@ -190,6 +193,21 @@ function showSlide(n) {
     }
   }
 
+//functions to make the navigation buttons work
+//let the buttons show last and next slide/question
+function showNextSlide() {
+    showSlide(currentSlide + 1);
+  }
+  
+  function showPreviousSlide() {
+    showSlide(currentSlide - 1);
+  }
+
+
 
 //show results on submit button
 submitButton.addEventListener("click", showResults);
+
+//event listeners for next and previous buttons
+previousButton.addEventListener("click", showPreviousSlide);
+nextButton.addEventListener("click", showNextSlide);
