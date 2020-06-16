@@ -165,8 +165,31 @@ function showResults() {
 	resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
 
-//show the first question
-showSlide(currentSlide);
+
+//function to display slides/questions one at a time
+function showSlide(n) {
+    //hide current slide by rremoving the active-slide class and show new one by adding that class
+    slides[currentSlide].classList.remove("active-slide");
+    slides[n].classList.add("active-slide");
+    //update current slide number
+    currentSlide = n;
+    //if on first slide, then hide the previous one, otherwse show the button
+    if(currentSlide === 0){
+      previousButton.style.display = "none";
+    }
+    else{
+      previousButton.style.display = "inline-block";
+    }
+    if(currentSlide === slides.length-1){
+      nextButton.style.display = "none";
+      submitButton.style.display = "inline-block";
+    }
+    else{
+      nextButton.style.display = "inline-block";
+      submitButton.style.display = "none";
+    }
+  }
+
 
 //show results on submit button
 submitButton.addEventListener("click", showResults);
