@@ -1,5 +1,10 @@
 /** @format */
 
+body {
+	background-image: url("tech-icons.png");
+	background-size: 250px 250px;
+}
+
 .top {
 	background-color: #84dbff;
 	opacity: 0.7;
@@ -35,4 +40,8 @@ time and opacity and z-index to create a fade in/out affect */
 	position: relative;
 	height: 200px;
 	margin-top: 40px;
+}
+
+.unseen {
+	opacity: 0;
 }
