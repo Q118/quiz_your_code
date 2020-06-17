@@ -34,13 +34,13 @@ var questions = [
 			a: "section",
 			b: "article",
 			c: "div",
-			d: "heder",
+			d: "header",
 		},
 		correctAnswer: "c",
 	},
 	{
 		question:
-			"Media queries define how css styles are applied in relation to the characteristics of the _________",
+			"Media queries define how css styles are applied in relation to the characteristics of the _________.",
 		answers: {
 			a: "window",
 			b: "console",
@@ -129,42 +129,77 @@ startButton.addEventListener("click", function (event) {
 		submitButton.style.visibility = "visible";
 		nextButton.style.visibility = "visible";
 		scoreContainer.style.visibility = "visible";
-        answerContainer.style.visibility = "visible";
-        
-        aContainer.addEventListener("click", function (event) {
-            if(event.target.matches("button")) {
-                console.log(event);
-                scoreContainer.textContent = "Incorrect!";
-                //decrease time
-            }
+		answerContainer.style.visibility = "visible";
 
-        })
-        bContainer.addEventListener("click", function (event) {
-            if(event.target.matches("button")) {
-                console.log(event);
-                scoreContainer.textContent = "Incorrect!";
-                //decrease time
-            }
+		aContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Incorrect! Try again or click next.";
+				//decrease time
+			}
+		});
+		bContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Incorrect! Try again or click next.";
+				//decrease time
+			}
+		});
+		cContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Correct! Click next to move on.";
+				//decrease time
+			}
+		});
+		dContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Incorrect! Try again or click next.";
+				//decrease time
+			}
+		});
 
-        })
-        cContainer.addEventListener("click", function (event) {
-            if(event.target.matches("button")) {
-                console.log(event);
-                scoreContainer.textContent = "Correct!";
-                //decrease time
-            }
+		//code for next button
+		nextButton.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				//display next question
+				instructionsContainer.textContent = questions[1].question;
+				aContainer.textContent = questions[1].answers.a;
+				bContainer.textContent = questions[1].answers.b;
+				cContainer.textContent = questions[1].answers.c;
+				dContainer.textContent = questions[1].answers.d;
 
-        })
-        dContainer.addEventListener("click", function (event) {
-            if(event.target.matches("button")) {
-                console.log(event);
-                scoreContainer.textContent = "Incorrect!";
-                //decrease time
-            }
-
-        })
-
-		//trigger quiz to display
-		//buildQuiz();
+				//find right answer
+				aContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Incorrect! Try again or click next.";
+						//decrease time
+					}
+				});
+				bContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Incorrect! Try again or click next.";
+						//decrease time
+					}
+				});
+				cContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Correct! aaaClick next to move on.";
+						//decrease time
+					}
+				});
+				dContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Incorrect! Try again or click next.";
+						//decrease time
+					}
+				});
+			}
+		});
 	}
 });
