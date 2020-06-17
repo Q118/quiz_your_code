@@ -188,7 +188,7 @@ startButton.addEventListener("click", function (event) {
 				cContainer.addEventListener("click", function (event) {
 					if (event.target.matches("button")) {
 						console.log(event);
-						scoreContainer.textContent = "Correct! aaaClick next to move on.";
+						scoreContainer.textContent = "Correct!Click next to move on.";
 						//decrease time
 					}
 				});
