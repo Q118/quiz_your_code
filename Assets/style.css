@@ -36,7 +36,7 @@ time and opacity and z-index to create a fade in/out affect */
 	opacity: 1;
 	z-index: 2;
 }
-.quiz-container {
+.quiz-box {
 	position: relative;
 	height: 200px;
 	margin-top: 40px;

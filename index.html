@@ -9,13 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <!--My CSS link-->
      <link rel="stylesheet" href="./Assets/style.css">
-    <style>
-        body {
-            background-image: url("Assets/tech-icons.png");
-            background-size: 250px 250px;
-        }
-        /* had trouble getting background image to work with seperate css*/
-    </style>
+    
   </head>
 <body>
       
@@ -38,19 +32,25 @@
 
 
 
-  <section class = "container quiz-container quiz-box text-center">
-      
+  <section class = "container  quiz-box text-center p-3">
+      <div class = "row quiz-container">
+        <div class = "col-sm">
         <div id="quiz"></div>
         <div id="start"></div>
-        
-      
-    <div id= "buttons">
+      </div>
+        </div>
+    
+    <div id= "buttons" class = "row"> 
+      <div class = "col-sm">
       <button id = "start-button"> Start Quiz!</button>
-      <button id="next">Next Question</button>
       <button id="previous">Previous Question</button>
+      <button id="next">Next Question</button>
+      
       
       <button id="submit">Submit Quiz</button>
-      <div id="results"></div>
+
+      <div id="results">results</div>
+    </div>
     </div>
  </section>
         
@@ -66,6 +66,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     <!--Link to my JS-->
-    <script type = text/javascript src= "Assets/script.js"></script>
+    <script type = text/javascript src= "Assets/alternate.js"></script>
 </body>
 </html>

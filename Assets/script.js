@@ -1,6 +1,5 @@
 /** @format */
-
-
+//$(function () {
 	// set up all the variables here
 	//containers
 	var quizContainer = document.getElementById("quiz");
@@ -21,6 +20,7 @@
 	buttonContainer.appendChild(submitButton);
 	buttonContainer.appendChild(nextButton);
 	buttonContainer.appendChild(backButton);
+	
 
 	//set quiz buttons to be hidden when page loads
 	window.addEventListener("load", (event) => {
@@ -77,6 +77,7 @@
 		},
 	];
 
+
 	//set up timer
 	var timeEl = document.querySelector("#time");
 	var startButton = document.querySelector("#start-button");
@@ -104,12 +105,12 @@
 
 			//trigger quiz to display
 			buildQuiz();
-			
+
 			var backButton = document.getElementById("previous");
 			var nextButton = document.getElementById("next");
 			var slides = document.querySelectorAll(".slide");
 			let currentSlide = 0;
-			showSlide(currentSlide);
+			
 			//trigger buttons to display
 			startButton.style.visibility = "hidden";
 			submitButton.style.visibility = "visible";
@@ -149,8 +150,9 @@
 		});
 		//joining together the HTML generated above to show it to the page
 		quizContainer.innerHTML = output.join(" ");
+		
 	}
-
+	// cant figure out where to put: showSlide(currentSlide);
 	//build showResults function to loop over the answers, check them, and show if right or wrong
 	function showResults() {
 		//get answers containers from quiz
@@ -183,8 +185,11 @@
 		resultsContainer.innerHTML = `${numCorrect} out of ${questions.length}`;
 	}
 
+	
+
 	//function to show a slide of a question
 	function showSlide(n) {
+		
 		//hide current slide by removing the active class
 		//show the new slide by adding the active class, then update current slide number
 		slides[currentSlide].classList.remove("active-slide");
@@ -220,4 +225,4 @@
 
 	backButton.addEventListener("click", showPreviousSlide);
 	nextButton.addEventListener("click", showNextSlide);
-
+//});
