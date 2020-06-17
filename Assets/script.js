@@ -1,13 +1,21 @@
 /** @format */
 
-// set up variables tpo get timer going
+// set up all the variables here
+//containers
 var quizContainer = document.getElementById("quiz");
 var resultsContainer = document.getElementById("results");
+var instructionsContainer = document.getElementById("start");
+var buttonContainer = document.getElementById("buttons");
+//buttons
 var submitButton = document.getElementById("submit");
 var nextButton = document.getElementById("next");
 var backButton = document.getElementById("previous");
-var instructionsContainer = document.getElementById("start");
-var buttonContainer = document.getElementById("buttons");
+
+
+//slides of individual questions
+var slides = document.querySelectorAll(".slide");
+let currentSlide = 0;
+
 //append elements to containers
 quizContainer.appendChild(instructionsContainer);
 buttonContainer.appendChild(submitButton);
@@ -93,13 +101,15 @@ startButton.addEventListener("click", function (event) {
 	if (event.target.matches("button")) {
 		countDown();
 		instructionsContainer.style.visibility = "hidden";
-		//trigger quiz to display and the buttons
-		//buildQuiz();
-		//document.getElementById("start").textContent = "Paragraph changed!";
+
+		//trigger quiz to display
+		buildQuiz();
+		//trigger buttons to display
 		startButton.style.visibility = "hidden";
 		submitButton.style.visibility = "visible";
 		nextButton.style.visibility = "visible";
 		backButton.style.visibility = "visible";
+		showSlide(currentSlide);
 	}
 });
 
@@ -167,6 +177,29 @@ function showResults() {
 	// show number of correct answers out of total
 	resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
 }
+
+//function to show a slide of a question
+function showSlide(n) {
+	//hide current slide by removing the active class
+	//show the new slide by adding the active class 
+	slides[currentSlide].classList.remove('active-slide');
+	slides[n].classList.add('active-slide');
+	currentSlide = n;
+	if(currentSlide === 0){
+	  backButton.style.display = 'none';
+	}
+	else{
+	  backButton.style.display = 'inline-block';
+	}
+	if(currentSlide === slides.length-1){
+	  nextButton.style.display = 'none';
+	  submitButton.style.display = 'inline-block';
+	}
+	else{
+	  nextButton.style.display = 'inline-block';
+	  submitButton.style.display = 'none';
+	}
+  }
 
 //show results on submit button
 submitButton.addEventListener("click", showResults);
