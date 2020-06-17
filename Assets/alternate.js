@@ -35,4 +35,48 @@ instructionsContainer.textContent =
         resultsContainer.style.visibility = "hidden";
     });
     
-    
+
+	//set up timer
+	var timeEl = document.querySelector("#time");
+	var startButton = document.querySelector("#start-button");
+	//variable to track remaining time
+	var secondsLeft = 75;
+
+	//function to start countdown
+	function countDown() {
+		timerInterval = setInterval(function () {
+			secondsLeft--;
+
+			timeEl.textContent = "Time Left: " + secondsLeft;
+
+			//if (secondsLeft ===0) {
+			//setup here the end of game and enter highscores etc
+			//}
+		}, 1000);
+	}
+
+
+
+
+   //function to start our quiz 
+   startButton.addEventListener("click", function (event) {
+    if (event.target.matches("button")) {
+        countDown();
+       // instructionsContainer.style.visibility = "hidden";
+
+        //trigger quiz to display
+        //buildQuiz();
+
+        //var backButton = document.getElementById("previous");
+        //var nextButton = document.getElementById("next");
+        //var slides = document.querySelectorAll(".slide");
+        //let currentSlide = 0;
+        
+        //trigger buttons to display and other elements to hide
+        instructionsContainer.style.visibility = "hidden";
+        startButton.style.visibility = "hidden";
+        submitButton.style.visibility = "visible";
+        nextButton.style.visibility = "visible";
+        backButton.style.visibility = "visible";
+    }
+});
