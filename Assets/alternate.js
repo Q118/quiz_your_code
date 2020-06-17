@@ -5,9 +5,11 @@
 var quizContainer = document.getElementsByClassName("quiz");
 //container holding the results
 var scoreContainer = document.getElementById("score");
-//container holding the starting question
+//container holding the starting question ans quiz questions
 var instructionsContainer = document.getElementById("start");
+
 var buttonContainer = document.getElementById("buttons");
+var answerContainer = document.getElementById("answers");
 
 //buttons
 var submitButton = document.getElementById("submit");
@@ -17,6 +19,12 @@ var backButton = document.getElementById("previous");
 //slides of individual questions
 //var slides = document.querySelectorAll(".slide");
 //let currentSlide = 0;
+
+//answer containers
+var aContainer = document.getElementById("aChoice");
+var bContainer = document.getElementById("bChoice");
+var cContainer = document.getElementById("cChoice");
+var dContainer = document.getElementById("dChoice");
 
 //set up array to display all the Q/As, using object properties
 var questions = [
@@ -66,7 +74,14 @@ var questions = [
 instructionsContainer.textContent =
 	"Welcome to the quiz on coding! Once you press start,you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
 
-    
+    //provide radio buttons for answers
+    //answers.push(
+        //`<label>
+         // <input type="radio" name="question${questionNumber}" value="${letter}">
+          //${letter} :
+       //   ${currentQuestion.answers[letter]}
+     //   </label>`
+   // );
 
 //this hides the quiz elements when page first loads
 	window.addEventListener("load", function (event) {
@@ -74,6 +89,7 @@ instructionsContainer.textContent =
 		nextButton.style.visibility = "hidden";
         backButton.style.visibility = "hidden";
         scoreContainer.style.visibility = "hidden";
+        answerContainer.style.visibility = "hidden";
         //quizContainer.style.visibility = "hidden";
     });
     
@@ -104,8 +120,12 @@ instructionsContainer.textContent =
    startButton.addEventListener("click", function (event) {
     if (event.target.matches("button")) {
         countDown();
+       //display questions and answers 
        instructionsContainer.textContent = (questions[0].question);
-
+       aContainer.textContent = (questions[0].answers.a);
+       bContainer.textContent = (questions[0].answers.b);
+       cContainer.textContent = (questions[0].answers.c);
+       dContainer.textContent = (questions[0].answers.d);
         //trigger quiz to display
         //buildQuiz();
 
@@ -117,7 +137,8 @@ instructionsContainer.textContent =
         nextButton.style.visibility = "visible";
         backButton.style.visibility = "visible";
         scoreContainer.style.visibility = "visible";
-        
+        answerContainer.style.visibility = "visible";
+
 
     }
 });
