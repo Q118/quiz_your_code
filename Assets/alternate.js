@@ -200,6 +200,90 @@ startButton.addEventListener("click", function (event) {
 					}
 				});
 			}
+			nextButton.addEventListener("click", function (event) {
+				if (event.target.matches("button")) {
+					instructionsContainer.textContent = questions[2].question;
+					aContainer.textContent = questions[2].answers.a;
+					bContainer.textContent = questions[2].answers.b;
+					cContainer.textContent = questions[2].answers.c;
+					dContainer.textContent = questions[2].answers.d;
+					//find right answer
+					aContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent =
+								"Incorrect! Try again or click next.";
+							//decrease time
+						}
+					});
+					bContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent =
+								"Incorrect! Try again or click next.";
+							//decrease time
+						}
+					});
+					cContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent =
+								"Incorrect! Try again or click next.";
+							//decrease time
+						}
+					});
+					dContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent = "Correct!Click next to move on.";
+							//decrease time
+						}
+					});
+				}
+
+				nextButton.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						instructionsContainer.textContent = questions[3].question;
+						aContainer.textContent = questions[3].answers.a;
+						bContainer.textContent = questions[3].answers.b;
+						cContainer.textContent = questions[3].answers.c;
+						dContainer.textContent = questions[3].answers.d;
+
+						//find right answer
+						aContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent =
+									"Incorrect! Try again or click next.";
+								//decrease time
+							}
+						});
+						bContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent = "Correct!Click next to move on.";
+								//decrease time
+							}
+						});
+						cContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent =
+									"Incorrect! Try again or click next.";
+								//decrease time
+							}
+						});
+						dContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent =
+									"Incorrect! Try again or click next.";
+								//decrease time
+							}
+						});
+					}
+				});
+			});
 		});
 	}
 });
