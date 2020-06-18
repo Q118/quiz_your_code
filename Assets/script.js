@@ -20,15 +20,17 @@ var submitButton = document.getElementById("submit");
 var nextButton = document.getElementById("next");
 var backButton = document.getElementById("previous");
 
-//slides of individual questions
-//var slides = document.querySelectorAll(".slide");
-//let currentSlide = 0;
+
 
 //answer containers
 var aContainer = document.getElementById("aChoice");
 var bContainer = document.getElementById("bChoice");
 var cContainer = document.getElementById("cChoice");
 var dContainer = document.getElementById("dChoice");
+
+//form variables
+var userInput = document.querySelector("#initials");
+var scoreSubmitButton = document.querySelector("#score-submit");
 
 //set up array to display all the Q/As, using object properties
 var questions = [
@@ -78,14 +80,7 @@ var questions = [
 instructionsContainer.textContent =
 	"Welcome to the quiz on coding! Once you press start,you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
 
-//provide radio buttons for answers
-//answers.push(
-//`<label>
-// <input type="radio" name="question${questionNumber}" value="${letter}">
-//${letter} :
-//   ${currentQuestion.answers[letter]}
-//   </label>`
-// );
+
 
 //this hides the quiz elements when page first loads
 window.addEventListener("load", function (event) {
@@ -116,6 +111,16 @@ function countDown() {
 		//}
 	}, 1000);
 }
+
+//function for high scores to lovcal storage
+
+function renderHighScores() {
+	var highScore = localStorage.getItem("initials", userInput);
+	localStorage.getItem("initials", userInput);
+
+};
+
+
 
 //function to start our quiz
 startButton.addEventListener("click", function (event) {
@@ -306,6 +311,21 @@ startButton.addEventListener("click", function (event) {
 						instructionsContainer.style.fontSize = "3em"; 
 							clearInterval(timerInterval);
 							timer.style.visibility = "hidden";
+
+						scoreSubmitButton.addEventListener("click", function(event) {
+							event.preventDefault();
+							console.log(event);
+							var userInput = document.querySelector("#initials").value;
+							
+							localStorage.setItem("initials", userInput);
+							renderHighScores();
+							window.location.href = "highscores.html";
+							
+						})
+
+
+
+						
 
 							
 					});
