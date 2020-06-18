@@ -25,7 +25,7 @@
 	//set quiz buttons to be hidden when page loads
 	window.addEventListener("load", (event) => {
 		instructionsContainer.innerHTML =
-			"Welcome to the quiz on coding! Once you press start,you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
+			"Welcome to the quiz on coding! Once you press start, you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
 
 		submitButton.style.visibility = "hidden";
 		nextButton.style.visibility = "hidden";

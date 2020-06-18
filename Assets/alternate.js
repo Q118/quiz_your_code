@@ -126,7 +126,6 @@ startButton.addEventListener("click", function (event) {
 		//trigger buttons to display and other elements to hide
 		//instructionsContainer.style.visibility = "hidden";
 		startButton.style.visibility = "hidden";
-		submitButton.style.visibility = "visible";
 		nextButton.style.visibility = "visible";
 		scoreContainer.style.visibility = "visible";
 		answerContainer.style.visibility = "visible";
@@ -248,6 +247,10 @@ startButton.addEventListener("click", function (event) {
 						bContainer.textContent = questions[3].answers.b;
 						cContainer.textContent = questions[3].answers.c;
 						dContainer.textContent = questions[3].answers.d;
+						//next button hides on the last question
+						nextButton.style.visibility = "hidden";
+						//submit button appears on last question
+						submitButton.style.visibility = "visible";
 
 						//find right answer
 						aContainer.addEventListener("click", function (event) {
@@ -282,6 +285,17 @@ startButton.addEventListener("click", function (event) {
 							}
 						});
 					}
+
+					submitButton.addEventListener("click", function (event) {
+						//remove necessary buttons
+						aContainer.style.visibility = "hidden";
+						bContainer.style.visibility = "hidden";
+						cContainer.style.visibility = "hidden";
+						dContainer.style.visibility = "hidden";
+
+						instructionsContainer.textContent =
+							"All done! You're final score is: " + timeEl.parseFloat;
+					});
 				});
 			});
 		});

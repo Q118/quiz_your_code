@@ -21,24 +21,13 @@ body {
 	border-width: 3px;
 }
 
-/*making the slides sit as layers in order to only shopw one at a 
-time and opacity and z-index to create a fade in/out affect */
-.slide {
-	position: absolute;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	z-index: 1;
-	opacity: 0;
-	transition: opacity 0.5s;
-}
-.active-slide {
-	opacity: 1;
-	z-index: 2;
-}
+
+
 .quiz-box {
 	position: relative;
-	height: 200px;
+	height: 300px;
 	margin-top: 40px;
 }
+
+
 
