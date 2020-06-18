@@ -335,7 +335,7 @@ startButton.addEventListener("click", function (event) {
 							var userInput = document.querySelector("#initials").value;
 							localStorage.setItem("initials", userInput);
 							renderHighScores();
-							window.location = "./assets/highscores.html";
+							window.location = "./Assets/highscores.html";
 
 							userPost.textContent = userInput;
 						});
