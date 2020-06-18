@@ -1,228 +1,313 @@
 /** @format */
-//$(function () {
-	// set up all the variables here
-	//containers
-	var quizContainer = document.getElementById("quiz");
-	var resultsContainer = document.getElementById("results");
-	var instructionsContainer = document.getElementById("start");
-	var buttonContainer = document.getElementById("buttons");
-	//buttons
-	var submitButton = document.getElementById("submit");
-	var nextButton = document.getElementById("next");
-	var backButton = document.getElementById("previous");
 
-	//slides of individual questions
-	var slides = document.querySelectorAll(".slide");
-	let currentSlide = 0;
+// set up all the variables here
+//container where quiz questions display
+var quizContainer = document.getElementsByClassName("quiz");
+//container holding the results
+var scoreContainer = document.getElementById("score");
+//container holding the starting question ans quiz questions
+var instructionsContainer = document.getElementById("start");
 
-	//append elements to containers
-	quizContainer.appendChild(instructionsContainer);
-	buttonContainer.appendChild(submitButton);
-	buttonContainer.appendChild(nextButton);
-	buttonContainer.appendChild(backButton);
-	
+var buttonContainer = document.getElementById("buttons");
+var answerContainer = document.getElementById("answers");
 
-	//set quiz buttons to be hidden when page loads
-	window.addEventListener("load", (event) => {
-		instructionsContainer.innerHTML =
-			"Welcome to the quiz on coding! Once you press start, you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
+//timer
+var timer = document.getElementById("timer");
 
-		submitButton.style.visibility = "hidden";
-		nextButton.style.visibility = "hidden";
-		backButton.style.visibility = "hidden";
-	});
+//buttons
+var submitButton = document.getElementById("submit");
+var nextButton = document.getElementById("next");
+var backButton = document.getElementById("previous");
 
-	//set up variables to display all the Q/As, using object properties
-	var questions = [
-		{
-			question: "Which of the following is not a semantic element?",
-			answers: {
-				a: "section",
-				b: "article",
-				c: "div",
-				d: "heder",
-			},
-			correctAnswer: "c",
+//slides of individual questions
+//var slides = document.querySelectorAll(".slide");
+//let currentSlide = 0;
+
+//answer containers
+var aContainer = document.getElementById("aChoice");
+var bContainer = document.getElementById("bChoice");
+var cContainer = document.getElementById("cChoice");
+var dContainer = document.getElementById("dChoice");
+
+//set up array to display all the Q/As, using object properties
+var questions = [
+	{
+		question: "Which of the following is not a semantic element?",
+		answers: {
+			a: "section",
+			b: "article",
+			c: "div",
+			d: "header",
 		},
-		{
-			question:
-				"Media queries define how css styles are applied in relation to the characteristics of the _________",
-			answers: {
-				a: "window",
-				b: "console",
-				c: "device viewport",
-				d: "server",
-			},
-			correctAnswer: "c",
+		correctAnswer: "c",
+	},
+	{
+		question:
+			"Media queries define how css styles are applied in relation to the characteristics of the _________.",
+		answers: {
+			a: "window",
+			b: "console",
+			c: "device viewport",
+			d: "server",
 		},
-		{
-			question: "In CSS, when/where must media queries be displayed? ",
-			answers: {
-				a: "first",
-				b: "anywhere",
-				c: "in a seperate file",
-				d: "last",
-			},
-			correctAnswer: "d",
+		correctAnswer: "c",
+	},
+	{
+		question: "In CSS, when/where must media queries be displayed? ",
+		answers: {
+			a: "first",
+			b: "anywhere",
+			c: "in a seperate file",
+			d: "last",
 		},
-		{
-			question: "Who invented Javascript?",
-			answers: {
-				a: "Elon Musk",
-				b: "Brendan Eich",
-				c: "Bill Gates",
-				d: "Steve Jobs",
-			},
-			correctAnswer: "b",
+		correctAnswer: "d",
+	},
+	{
+		question: "Who invented Javascript?",
+		answers: {
+			a: "Elon Musk",
+			b: "Brendan Eich",
+			c: "Bill Gates",
+			d: "Steve Jobs",
 		},
-	];
+		correctAnswer: "b",
+	},
+];
 
+instructionsContainer.textContent =
+	"Welcome to the quiz on coding! Once you press start,you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
 
-	//set up timer
-	var timeEl = document.querySelector("#time");
-	var startButton = document.querySelector("#start-button");
-	//variable to track remaining time
-	var secondsLeft = 75;
+//provide radio buttons for answers
+//answers.push(
+//`<label>
+// <input type="radio" name="question${questionNumber}" value="${letter}">
+//${letter} :
+//   ${currentQuestion.answers[letter]}
+//   </label>`
+// );
 
-	//function to start countdown
-	function countDown() {
-		timerInterval = setInterval(function () {
-			secondsLeft--;
+//this hides the quiz elements when page first loads
+window.addEventListener("load", function (event) {
+	submitButton.style.visibility = "hidden";
+	nextButton.style.visibility = "hidden";
+	backButton.style.visibility = "hidden";
+	scoreContainer.style.visibility = "hidden";
+	answerContainer.style.visibility = "hidden";
+	timer.style.visibility = "hidden";
+});
 
-			timeEl.textContent = "Time Left: " + secondsLeft;
+//set up timer
+var timeEl = document.querySelector("#time");
+var startButton = document.querySelector("#start-button");
+//variable to track remaining time
+var secondsLeft = 75;
 
-			//if (secondsLeft ===0) {
-			//setup here the end of game and enter highscores etc
-			//}
-		}, 1000);
-	}
+//function to start countdown
+function countDown() {
+	timerInterval = setInterval(function () {
+		secondsLeft--;
 
-	//event listener for click of start button and countdown functin gets called
-	startButton.addEventListener("click", function (event) {
-		if (event.target.matches("button")) {
-			countDown();
-			instructionsContainer.style.visibility = "hidden";
+		timeEl.textContent = secondsLeft;
 
-			//trigger quiz to display
-			buildQuiz();
+		//if (secondsLeft ===0) {
+		//setup here the end of game and enter highscores etc
+		//}
+	}, 1000);
+}
 
-			var backButton = document.getElementById("previous");
-			var nextButton = document.getElementById("next");
-			var slides = document.querySelectorAll(".slide");
-			let currentSlide = 0;
-			
-			//trigger buttons to display
-			startButton.style.visibility = "hidden";
-			submitButton.style.visibility = "visible";
-			nextButton.style.visibility = "visible";
-			backButton.style.visibility = "visible";
-		}
-	});
+//function to start our quiz
+startButton.addEventListener("click", function (event) {
+	if (event.target.matches("button")) {
+		countDown();
+		//display questions and answers and timer
+		timer.style.visibility = "visible";
+		instructionsContainer.textContent = questions[0].question;
+		aContainer.textContent = questions[0].answers.a;
+		bContainer.textContent = questions[0].answers.b;
+		cContainer.textContent = questions[0].answers.c;
+		dContainer.textContent = questions[0].answers.d;
 
-	//setting up functions to get the quiz going
-	function buildQuiz() {
-		//variable to store the user selection
-		var output = [];
+		//trigger buttons to display and other elements to hide
+		//instructionsContainer.style.visibility = "hidden";
+		startButton.style.visibility = "hidden";
+		nextButton.style.visibility = "visible";
+		scoreContainer.style.visibility = "visible";
+		answerContainer.style.visibility = "visible";
 
-		//apply .forEach to the array of questions
-		//arguments passed will be the questions and the index of that question
-		//code for each question gets looped through
-		questions.forEach((currentQuestion, questionNumber) => {
-			//variable to store list of possible answers and variable for each possible answer
-			var answers = [];
-			for (letter in currentQuestion.answers) {
-				//adding html radio button
-				answers.push(
-					`<label>
-                      <input type="radio" name="question${questionNumber}" value="${letter}">
-                      ${letter} :
-                      ${currentQuestion.answers[letter]}
-                    </label>`
-				);
+		aContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Incorrect! Try again or click next.";
+				//decrease time
 			}
-			//add the current question and its answers to the output
-			//use join to take the list of answers and put them together in one string that
-			//gets outputted into the answers div
-			output.push(
-				`<div class="question"> ${currentQuestion.question} </div>
-        <div class="answers"> ${answers.join(" ")} </div>`
-			);
 		});
-		//joining together the HTML generated above to show it to the page
-		quizContainer.innerHTML = output.join(" ");
-		
-	}
-	// cant figure out where to put: showSlide(currentSlide);
-	//build showResults function to loop over the answers, check them, and show if right or wrong
-	function showResults() {
-		//get answers containers from quiz
-		var answerContainers = quizContainer.querySelectorAll(".answers");
-
-		//keep track of user's answers for each question
-		let numCorrect = 0;
-
-		questions.forEach((currentQuestion, questionNumber) => {
-			//find the answer the user selected
-			var answerContainer = answerContainers[questionNumber];
-			var selector = `input[name=question${questionNumber}]:checked`;
-			var userAnswer = (answerContainer.querySelector(selector) || {}).value;
-
-			//if right answer
-			if (userAnswer === currentQuestion.correctAnswer) {
-				//alert("correct!");
-				numCorrect++;
-				//set attribute to green colored class
-				answerContainers[questionNumber].style.color = "green";
+		bContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Incorrect! Try again or click next.";
+				//decrease time
 			}
-			//wrong answer
-			else {
-				//alert("Wrong, nice try!");
-				answerContainers[questionNumber].style.color = "red";
+		});
+		cContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Correct! Click next to move on.";
+				//decrease time
+			}
+		});
+		dContainer.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				console.log(event);
+				scoreContainer.textContent = "Incorrect! Try again or click next.";
+				//decrease time
 			}
 		});
 
-		// show number of correct answers out of total
-		resultsContainer.innerHTML = `${numCorrect} out of ${questions.length}`;
+		//code for next button
+		nextButton.addEventListener("click", function (event) {
+			if (event.target.matches("button")) {
+				//display next question
+				instructionsContainer.textContent = questions[1].question;
+				aContainer.textContent = questions[1].answers.a;
+				bContainer.textContent = questions[1].answers.b;
+				cContainer.textContent = questions[1].answers.c;
+				dContainer.textContent = questions[1].answers.d;
+
+				//find right answer
+				aContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Incorrect! Try again or click next.";
+						//decrease time
+					}
+				});
+				bContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Incorrect! Try again or click next.";
+						//decrease time
+					}
+				});
+				cContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Correct!Click next to move on.";
+						//decrease time
+					}
+				});
+				dContainer.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						console.log(event);
+						scoreContainer.textContent = "Incorrect! Try again or click next.";
+						//decrease time
+					}
+				});
+			}
+			nextButton.addEventListener("click", function (event) {
+				if (event.target.matches("button")) {
+					instructionsContainer.textContent = questions[2].question;
+					aContainer.textContent = questions[2].answers.a;
+					bContainer.textContent = questions[2].answers.b;
+					cContainer.textContent = questions[2].answers.c;
+					dContainer.textContent = questions[2].answers.d;
+					//find right answer
+					aContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent =
+								"Incorrect! Try again or click next.";
+							//decrease time
+						}
+					});
+					bContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent =
+								"Incorrect! Try again or click next.";
+							//decrease time
+						}
+					});
+					cContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent =
+								"Incorrect! Try again or click next.";
+							//decrease time
+						}
+					});
+					dContainer.addEventListener("click", function (event) {
+						if (event.target.matches("button")) {
+							console.log(event);
+							scoreContainer.textContent = "Correct!Click next to move on.";
+							//decrease time
+						}
+					});
+				}
+
+				nextButton.addEventListener("click", function (event) {
+					if (event.target.matches("button")) {
+						instructionsContainer.textContent = questions[3].question;
+						aContainer.textContent = questions[3].answers.a;
+						bContainer.textContent = questions[3].answers.b;
+						cContainer.textContent = questions[3].answers.c;
+						dContainer.textContent = questions[3].answers.d;
+						//next button hides on the last question
+						nextButton.style.visibility = "hidden";
+						//submit button appears on last question
+						submitButton.style.visibility = "visible";
+
+						//find right answer
+						aContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent =
+									"Incorrect! Try again or click next.";
+								//decrease time
+							}
+						});
+						bContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent = "Correct!Click next to move on.";
+								//decrease time
+							}
+						});
+						cContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent =
+									"Incorrect! Try again or click next.";
+								//decrease time
+							}
+						});
+						dContainer.addEventListener("click", function (event) {
+							if (event.target.matches("button")) {
+								console.log(event);
+								scoreContainer.textContent =
+									"Incorrect! Try again or click next.";
+								//decrease time
+							}
+						});
+					}
+
+					submitButton.addEventListener("click", function (event) {
+						//remove necessary buttons
+						aContainer.style.visibility = "hidden";
+						bContainer.style.visibility = "hidden";
+						cContainer.style.visibility = "hidden";
+						dContainer.style.visibility = "hidden";
+						submitButton.style.visibility = "hidden";
+
+						instructionsContainer.textContent =
+							"All done! You're final score is: " + secondsLeft;
+						instructionsContainer.style.fontSize = "3em"; 
+							clearInterval(timerInterval);
+							timer.style.visibility = "hidden";
+
+							
+					});
+				});
+			});
+		});
 	}
-
-	
-
-	//function to show a slide of a question
-	function showSlide(n) {
-		
-		//hide current slide by removing the active class
-		//show the new slide by adding the active class, then update current slide number
-		slides[currentSlide].classList.remove("active-slide");
-		slides[n].classList.add("active-slide");
-		currentSlide = n;
-		//if on last slide, hide next button, if on first then hide the previous button
-		if (currentSlide === 0) {
-			backButton.style.display = "none";
-		} else {
-			backButton.style.display = "inline-block";
-		}
-		if (currentSlide === slides.length - 1) {
-			nextButton.style.display = "none";
-			submitButton.style.display = "inline-block";
-		} else {
-			nextButton.style.display = "inline-block";
-			submitButton.style.display = "none";
-		}
-	}
-
-	//create functions to assign to to next and orevious buttons
-	function showNextSlide() {
-		showSlide(currentSlide + 1);
-	}
-
-	function showPreviousSlide() {
-		showSlide(currentSlide - 1);
-	}
-
-	//showSlide(currentSlide);
-	//show results on submit button
-	submitButton.addEventListener("click", showResults);
-
-	backButton.addEventListener("click", showPreviousSlide);
-	nextButton.addEventListener("click", showNextSlide);
-//});
+});
