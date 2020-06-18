@@ -20,8 +20,6 @@ var submitButton = document.getElementById("submit");
 var nextButton = document.getElementById("next");
 var backButton = document.getElementById("previous");
 
-
-
 //answer containers
 var aContainer = document.getElementById("aChoice");
 var bContainer = document.getElementById("bChoice");
@@ -31,6 +29,7 @@ var dContainer = document.getElementById("dChoice");
 //form variables
 var userInput = document.querySelector("#initials");
 var scoreSubmitButton = document.querySelector("#score-submit");
+var userPost = document.querySelector("#posted-scores");
 
 //set up array to display all the Q/As, using object properties
 var questions = [
@@ -80,8 +79,6 @@ var questions = [
 instructionsContainer.textContent =
 	"Welcome to the quiz on coding! Once you press start,you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
 
-
-
 //this hides the quiz elements when page first loads
 window.addEventListener("load", function (event) {
 	submitButton.style.visibility = "hidden";
@@ -112,15 +109,13 @@ function countDown() {
 	}, 1000);
 }
 
-//function for high scores to lovcal storage
+//function for high scores to local storage
 
 function renderHighScores() {
 	var highScore = localStorage.getItem("initials", userInput);
-	localStorage.getItem("initials", userInput);
 
-};
-
-
+	//localStorage.getItem("initials", userInput);
+}
 
 //function to start our quiz
 startButton.addEventListener("click", function (event) {
@@ -146,6 +141,8 @@ startButton.addEventListener("click", function (event) {
 				console.log(event);
 				scoreContainer.textContent = "Incorrect! Try again or click next.";
 				//decrease time
+				secondsLeft = parseInt(secondsLeft);
+				secondsLeft = secondsLeft - 10;
 			}
 		});
 		bContainer.addEventListener("click", function (event) {
@@ -153,13 +150,14 @@ startButton.addEventListener("click", function (event) {
 				console.log(event);
 				scoreContainer.textContent = "Incorrect! Try again or click next.";
 				//decrease time
+				secondsLeft = parseInt(secondsLeft);
+				secondsLeft = secondsLeft - 10;
 			}
 		});
 		cContainer.addEventListener("click", function (event) {
 			if (event.target.matches("button")) {
 				console.log(event);
 				scoreContainer.textContent = "Correct! Click next to move on.";
-				//decrease time
 			}
 		});
 		dContainer.addEventListener("click", function (event) {
@@ -167,6 +165,8 @@ startButton.addEventListener("click", function (event) {
 				console.log(event);
 				scoreContainer.textContent = "Incorrect! Try again or click next.";
 				//decrease time
+				secondsLeft = parseInt(secondsLeft);
+				secondsLeft = secondsLeft - 10;
 			}
 		});
 
@@ -186,6 +186,8 @@ startButton.addEventListener("click", function (event) {
 						console.log(event);
 						scoreContainer.textContent = "Incorrect! Try again or click next.";
 						//decrease time
+						secondsLeft = parseInt(secondsLeft);
+						secondsLeft = secondsLeft - 10;
 					}
 				});
 				bContainer.addEventListener("click", function (event) {
@@ -193,13 +195,15 @@ startButton.addEventListener("click", function (event) {
 						console.log(event);
 						scoreContainer.textContent = "Incorrect! Try again or click next.";
 						//decrease time
+						secondsLeft = parseInt(secondsLeft)
+						secondsLeft = secondsLeft -10;
 					}
 				});
 				cContainer.addEventListener("click", function (event) {
 					if (event.target.matches("button")) {
 						console.log(event);
 						scoreContainer.textContent = "Correct!Click next to move on.";
-						//decrease time
+						
 					}
 				});
 				dContainer.addEventListener("click", function (event) {
@@ -207,6 +211,8 @@ startButton.addEventListener("click", function (event) {
 						console.log(event);
 						scoreContainer.textContent = "Incorrect! Try again or click next.";
 						//decrease time
+						secondsLeft = parseInt(secondsLeft)
+						secondsLeft = secondsLeft -10;
 					}
 				});
 			}
@@ -224,6 +230,8 @@ startButton.addEventListener("click", function (event) {
 							scoreContainer.textContent =
 								"Incorrect! Try again or click next.";
 							//decrease time
+							secondsLeft = parseInt(secondsLeft)
+							secondsLeft = secondsLeft -10;
 						}
 					});
 					bContainer.addEventListener("click", function (event) {
@@ -232,6 +240,8 @@ startButton.addEventListener("click", function (event) {
 							scoreContainer.textContent =
 								"Incorrect! Try again or click next.";
 							//decrease time
+							secondsLeft = parseInt(secondsLeft)
+							secondsLeft = secondsLeft -10;
 						}
 					});
 					cContainer.addEventListener("click", function (event) {
@@ -246,7 +256,7 @@ startButton.addEventListener("click", function (event) {
 						if (event.target.matches("button")) {
 							console.log(event);
 							scoreContainer.textContent = "Correct!Click next to move on.";
-							//decrease time
+							
 						}
 					});
 				}
@@ -270,13 +280,15 @@ startButton.addEventListener("click", function (event) {
 								scoreContainer.textContent =
 									"Incorrect! Try again or click next.";
 								//decrease time
+								secondsLeft = parseInt(secondsLeft)
+								secondsLeft = secondsLeft -10;
 							}
 						});
 						bContainer.addEventListener("click", function (event) {
 							if (event.target.matches("button")) {
 								console.log(event);
 								scoreContainer.textContent = "Correct!Click next to move on.";
-								//decrease time
+								
 							}
 						});
 						cContainer.addEventListener("click", function (event) {
@@ -285,6 +297,8 @@ startButton.addEventListener("click", function (event) {
 								scoreContainer.textContent =
 									"Incorrect! Try again or click next.";
 								//decrease time
+								secondsLeft = parseInt(secondsLeft)
+								secondsLeft = secondsLeft -10;
 							}
 						});
 						dContainer.addEventListener("click", function (event) {
@@ -293,6 +307,8 @@ startButton.addEventListener("click", function (event) {
 								scoreContainer.textContent =
 									"Incorrect! Try again or click next.";
 								//decrease time
+								secondsLeft = parseInt(secondsLeft)
+								secondsLeft = secondsLeft -10;
 							}
 						});
 					}
@@ -308,26 +324,21 @@ startButton.addEventListener("click", function (event) {
 
 						instructionsContainer.textContent =
 							"All done! You're final score is: " + secondsLeft;
-						instructionsContainer.style.fontSize = "3em"; 
-							clearInterval(timerInterval);
-							timer.style.visibility = "hidden";
+						instructionsContainer.style.fontSize = "3em";
+						clearInterval(timerInterval);
+						timer.style.visibility = "hidden";
 
-						scoreSubmitButton.addEventListener("click", function(event) {
+						scoreSubmitButton.addEventListener("click", function (event) {
 							event.preventDefault();
 							console.log(event);
+
 							var userInput = document.querySelector("#initials").value;
-							
 							localStorage.setItem("initials", userInput);
 							renderHighScores();
 							window.location = "./assets/highscores.html";
-							
-						})
 
-
-
-						
-
-							
+							userPost.textContent = userInput;
+						});
 					});
 				});
 			});
