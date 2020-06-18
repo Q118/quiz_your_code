@@ -8,6 +8,7 @@ var scoreContainer = document.getElementById("score");
 //container holding the starting question ans quiz questions
 var instructionsContainer = document.getElementById("start");
 
+var formContainer = document.getElementById("score-form");
 var buttonContainer = document.getElementById("buttons");
 var answerContainer = document.getElementById("answers");
 
@@ -94,6 +95,7 @@ window.addEventListener("load", function (event) {
 	scoreContainer.style.visibility = "hidden";
 	answerContainer.style.visibility = "hidden";
 	timer.style.visibility = "hidden";
+	formContainer.style.visibility = "hidden";
 });
 
 //set up timer
@@ -291,12 +293,13 @@ startButton.addEventListener("click", function (event) {
 					}
 
 					submitButton.addEventListener("click", function (event) {
-						//remove necessary buttons
+						//remove and display necessary buttons/form
 						aContainer.style.visibility = "hidden";
 						bContainer.style.visibility = "hidden";
 						cContainer.style.visibility = "hidden";
 						dContainer.style.visibility = "hidden";
 						submitButton.style.visibility = "hidden";
+						formContainer.style.visibility = "visible";
 
 						instructionsContainer.textContent =
 							"All done! You're final score is: " + secondsLeft;

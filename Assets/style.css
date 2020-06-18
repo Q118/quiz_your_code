@@ -21,13 +21,16 @@ body {
 	border-width: 3px;
 }
 
-
-
 .quiz-box {
 	position: relative;
 	height: 300px;
 	margin-top: 40px;
 }
 
-
-
+.score-box {
+	background-color: #f8a186;
+	opacity: 0.9;
+	border-color: black;
+	border-style: double;
+	border-width: 3px;
+}
