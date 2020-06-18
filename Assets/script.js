@@ -77,7 +77,7 @@ var questions = [
 ];
 
 instructionsContainer.textContent =
-	"Welcome to the quiz on coding! Once you press start,you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, time will be deducted. You're final score will be the number of seconds left. Post your initials with your score at the end!";
+	"Welcome to the quiz on coding! Once you press start, you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, ten seconds of time will be deducted. Your final score will be the number of seconds left. Post your initials with your score at the end!";
 
 //this hides the quiz elements when page first loads
 window.addEventListener("load", function (event) {
@@ -102,10 +102,10 @@ function countDown() {
 		secondsLeft--;
 
 		timeEl.textContent = secondsLeft;
-
-		//if (secondsLeft ===0) {
 		//setup here the end of game and enter highscores etc
-		//}
+		//if (secondsLeft ===0) {}
+		
+		
 	}, 1000);
 }
 
