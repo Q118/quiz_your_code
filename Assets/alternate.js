@@ -295,6 +295,8 @@ startButton.addEventListener("click", function (event) {
 
 						instructionsContainer.textContent =
 							"All done! You're final score is: " + timeEl.parseFloat;
+
+							clearInterval(timerInterval);
 					});
 				});
 			});
