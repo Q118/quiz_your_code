@@ -28,3 +28,14 @@
 ## USAGE
     instructions for the game; "Once you press start, you will have 75 seconds to complete this multiple choice quiz. If you get a question wrong, ten seconds of time will be deducted. Your final score will be the number of seconds left. Post your initials with your score at the end!"
 
+## Installation 
+URL for my deployed page: https://q118.github.io/quiz_your_code/
+
+![](https://github.com/Q118/quiz_your_code/blob/master/Assets/screenshot.png)
+
+
+
+## Credits
+https://www.geeksforgeeks.org/javascript-array-foreach/
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+https://www.sitepoint.com/simple-javascript-quiz/
