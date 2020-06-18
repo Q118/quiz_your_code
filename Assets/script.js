@@ -319,7 +319,7 @@ startButton.addEventListener("click", function (event) {
 							
 							localStorage.setItem("initials", userInput);
 							renderHighScores();
-							window.location.href = "highscores.html";
+							window.location = "./assets/highscores.html";
 							
 						})
 
